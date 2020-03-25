@@ -1,16 +1,15 @@
-import React, { useRef, useEffect } from "react";
-import ToastEditor from "tui-image-editor";
-import { blackTheme } from "../../options/theme";
+import React from "react";
+// @ts-ignore
+import ToastEditor from "@toast-ui/react-image-editor";
 import { locale_ko_KR } from "../../options/locale";
+import { blackTheme } from "../../options/theme";
 
-import "tui-image-editor/dist/tui-image-editor.min.css";
+import "tui-image-editor/dist/tui-image-editor.css";
 
 const ImageEditor = () => {
-  const imageEditor = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    // @ts-ignore
-    new ToastEditor(imageEditor.current, {
-      includeUI: {
+  return (
+    <ToastEditor
+      includeUI={{
         loadImage: {
           path: 'img/sampleImage.jpg',
           name: 'SampleImage'
@@ -19,19 +18,15 @@ const ImageEditor = () => {
         theme: blackTheme, // or whiteTheme
         initMenu: 'filter',
         menuBarPosition: 'bottom'
-      },
-      cssMaxWidth: 700,
-      cssMaxHeight: 1000,
-      selectionStyle: {
+      }}
+      cssMaxWidth={700}
+      cssMaxHeight={1000}
+      selectionStyle={{
         cornerSize: 20,
         rotatingPointOffset: 70
-      }
-    });
-  }, []);
-
-  return (
-    <div id="imageEditor" ref={imageEditor} />
-  );
+      }}
+    />
+  )
 };
 
 export default ImageEditor;

@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@toast-ui/react-image-editor": "^1.2.0",
     "@types/react": "^16.9.25",
     "@types/react-dom": "^16.9.5",
     "cra-template-typescript": "1.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "tui-image-editor": "^3.9.0",
     "typescript": "^3.8.3"
   },
   "scripts": {
