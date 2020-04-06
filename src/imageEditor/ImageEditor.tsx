@@ -1,5 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ToastEditor from "tui-image-editor";
+
+import EditTools from "./EditTools";
 
 import { useInput } from "../hooks";
 import EditorOptions from "./editorOptions";
@@ -7,15 +9,18 @@ import { urlUpload, fileUpload } from "./apis/upload";
 
 import "./ImageEditor.css";
 
-let editor: ToastEditor;
+// @ts-ignore
+const initialEditor:ToastEditor = new ToastEditor(document.querySelector("#hidden-editor"), EditorOptions);
 
 function ImageEditor() {
   const imageEditorRef = useRef<HTMLDivElement>(null);
+  const [editor, setEditor] = useState(initialEditor);
   const imageUrl = useInput("");
 
+  // DOM 에 Element 생성된 후에 imageEditor 재설정
   useEffect(() => {
     // @ts-ignore
-    editor = new ToastEditor(imageEditorRef.current, EditorOptions);
+    setEditor(new ToastEditor(imageEditorRef.current, EditorOptions));
   }, []);
 
   return (
@@ -29,7 +34,7 @@ function ImageEditor() {
         </div>
       </div>
       <div className="editor-content" ref={imageEditorRef} />
-
+      <EditTools editor={editor} />
     </div>
   )
 }

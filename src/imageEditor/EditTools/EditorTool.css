@@ -1,0 +1,9 @@
+.editor-tool-container {
+    position: fixed;
+    z-index: 1000;
+    top: 70px;
+    width: 70px;
+    height: 100%;
+    background: black;
+    color: white;
+}
