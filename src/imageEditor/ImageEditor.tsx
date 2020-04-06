@@ -1,58 +1,31 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import ToastEditor from "tui-image-editor";
+
+import { useInput } from "../hooks";
+import EditorOptions from "./editorOptions";
+import { urlUpload, fileUpload } from "./apis/upload";
 
 import "./ImageEditor.css";
 
-let editor: ToastEditor | null = null;
+let editor: ToastEditor;
 
 function ImageEditor() {
   const imageEditorRef = useRef<HTMLDivElement>(null);
-  const [imageUrl, setImageUrl] = useState("");
+  const imageUrl = useInput("");
 
   useEffect(() => {
     // @ts-ignore
-    editor = new ToastEditor(imageEditorRef.current, {
-      cssMaxWidth: 700,
-      cssMaxHeight: 500,
-      selectionStyle: {
-        cornerSize: 20,
-        rotatingPointOffset: 70
-      }
-    });
+    editor = new ToastEditor(imageEditorRef.current, EditorOptions);
   }, []);
-
-  const fileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) {
-      return;
-    }
-    const [file]: File[] = Array.from(e.target.files);
-    if (!editor) return;
-    try {
-      await editor.loadImageFromFile(file);
-      editor.clearUndoStack();
-    } catch (err) {
-      console.log("이미지 업로드 실패: ", err);
-    }
-  };
-
-  const urlUpload = async () => {
-    try {
-      console.log("imageUrl: ", imageUrl);
-      await editor?.loadImageFromURL(imageUrl, "Test-Image");
-      editor?.clearUndoStack();
-    } catch (err) {
-      console.log("이미지 업로드 실패: ", err);
-    }
-  };
 
   return (
     <div className="editor-container">
       <div className="editor-image-uploader">
         <h3>이미지 파일 가져오기</h3>
-        <input type="file" accept="image/*" id="input-image-file" onChange={fileUpload} />
+        <input type="file" accept="image/*" id="input-image-file" onChange={e => e.target.files && fileUpload(editor, e.target.files)} />
         <div className="editor-image-url-uploader">
-          <input type="text" id="input-image-url" onChange={e => setImageUrl(e.target.value)} value={imageUrl} />
-          <button onClick={urlUpload}>가져오기</button>
+          <input type="text" id="input-image-url" onChange={e => imageUrl.onChange(e.target.value)} value={imageUrl.value} />
+          <button onClick={() => urlUpload(editor, imageUrl.value)}>가져오기</button>
         </div>
       </div>
       <div className="editor-content" ref={imageEditorRef} />
