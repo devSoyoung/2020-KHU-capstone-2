@@ -6,4 +6,31 @@
     height: 100%;
     background: black;
     color: white;
+    text-align: center;
+}
+
+.editor-tool-container i:first-child {
+    margin-top: 30px;
+}
+.editor-tool-container i {
+    display: block;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+.editor-tool-container i:hover {
+    transition: 0.3s;
+    transform: scale(1.1);
+}
+
+.editor-tool-container i.focus {
+    color: #007bff;
+}
+
+
+.editor-tool-container.disabled i {
+    cursor: default;
+    color: gray;
+}
+.editor-tool-container.disabled i:hover {
+    transform: none;
 }

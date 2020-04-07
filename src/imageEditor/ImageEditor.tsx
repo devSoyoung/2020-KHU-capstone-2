@@ -23,6 +23,16 @@ function ImageEditor() {
     setEditor(new ToastEditor(imageEditorRef.current, EditorOptions));
   }, []);
 
+  useEffect(() => {
+    const timerid = setTimeout(() => {
+      console.log("setTimeout called");
+    }, 1000);
+
+    return () => {
+      clearTimeout(timerid);
+    }
+  }, []);
+
   return (
     <div className="editor-container">
       <div className="editor-image-uploader">
@@ -34,7 +44,7 @@ function ImageEditor() {
         </div>
       </div>
       <div className="editor-content" ref={imageEditorRef} />
-      <EditTools editor={editor} />
+      <EditTools editor={editor} disabled={false} />
     </div>
   )
 }

@@ -2,3 +2,7 @@
 .editor-content {
     height: 100%;
 }
+
+.tui-image-editor-canvas-container {
+    margin: auto;
+}
