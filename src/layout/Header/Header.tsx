@@ -6,15 +6,21 @@ import "./Header.scss";
 interface HeaderProps {
   editMode: boolean;
   login: boolean;
+  setDarkMode: Function,
 }
 
-const Header: React.FunctionComponent<HeaderProps> = ({ login, editMode }) => {
+const Header: React.FunctionComponent<HeaderProps> = ({ login, editMode, setDarkMode }) => {
   return (
     <header>
       <span className="header-title">
         <Link to="/">Web Image Editor</Link>
       </span>
       {login && getEditorButton(editMode)}
+      <label className="switch">
+        <input type="checkbox" onChange={(e) => setDarkMode(e.target.checked)} />
+        <span className="slider round" />
+      </label>
+
     </header>
   );
 };

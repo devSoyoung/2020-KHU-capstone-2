@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import MainPage from "./pages/MainPage";
@@ -11,14 +11,15 @@ import "./App.css";
 const initialState = {
   editMode: false,
   login: false,
-  darkMode: false,
+  // darkMode: false,
 };
 
 function App() {
+  const [darkMode, setDarkMode]: [boolean, Function] = useState(false);
   return (
     <Router>
-      <div className={`App${initialState.darkMode ? " dark-mode" : ""}`}>
-        <Header editMode={initialState.editMode} login={initialState.login} />
+      <div className={`App${darkMode ? " dark-mode" : ""}`}>
+        <Header editMode={initialState.editMode} login={initialState.login} setDarkMode={setDarkMode} />
         <Switch>
           <Route path="/editor" component={EditorPage} />
           <Route path="/" component={MainPage} />
