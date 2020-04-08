@@ -1,3 +1,5 @@
+@import "src/scss/common.scss";
+
 header {
     height: 70px;
     line-height: 70px;
@@ -15,4 +17,10 @@ header {
 
 .header-btn {
     margin-left: auto;
+}
+
+.dark-mode {
+    header {
+        background: $dark-background;
+    }
 }

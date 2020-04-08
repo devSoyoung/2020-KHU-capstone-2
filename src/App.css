@@ -6,10 +6,6 @@ html, body,
   font-family: 'Ubuntu', 'Noto Sans KR', sans-serif;
 }
 
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;

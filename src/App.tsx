@@ -10,17 +10,20 @@ import "./App.css";
 
 const initialState = {
   editMode: false,
-  login: false
+  login: false,
+  darkMode: false,
 };
 
 function App() {
   return (
     <Router>
-      <Header editMode={initialState.editMode} login={initialState.login} />
-      <Switch>
-        <Route path="/editor" component={EditorPage} />
-        <Route path="/" component={MainPage} />
-      </Switch>
+      <div className={`App${initialState.darkMode ? " dark-mode" : ""}`}>
+        <Header editMode={initialState.editMode} login={initialState.login} />
+        <Switch>
+          <Route path="/editor" component={EditorPage} />
+          <Route path="/" component={MainPage} />
+        </Switch>
+      </div>
     </Router>
   );
 }

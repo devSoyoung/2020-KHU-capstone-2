@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ToastEditor from "tui-image-editor";
 
-import "./EditorTool.css";
+import "./EditorTool.scss";
 
 interface EditToolsProps {
   editor: ToastEditor,

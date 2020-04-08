@@ -1,0 +1,49 @@
+@import "src/scss/common.scss";
+
+.editor-tool-container {
+    position: fixed;
+    z-index: 1000;
+    top: 70px;
+    width: 70px;
+    height: 100%;
+     background: white;
+    color: black;
+    text-align: center;
+
+    i {
+        display: block;
+        margin-bottom: 30px;
+        cursor: pointer;
+
+        &.focus {
+            color: #007bff;
+        }
+
+        &:first-child {
+            margin-top: 30px;
+        }
+
+        &:hover {
+            transition: 0.3s;
+            transform: scale(1.1);
+        }
+    }
+
+    &.disabled {
+        i {
+            cursor: default;
+            color: gray;
+
+            &:hover {
+                transform: none;
+            }
+        }
+    }
+}
+
+.dark-mode {
+    .editor-tool-container {
+        background: $dark-background;
+        color: white;
+    }
+}

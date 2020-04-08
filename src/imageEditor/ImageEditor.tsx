@@ -23,16 +23,6 @@ function ImageEditor() {
     setEditor(new ToastEditor(imageEditorRef.current, EditorOptions));
   }, []);
 
-  useEffect(() => {
-    const timerid = setTimeout(() => {
-      console.log("setTimeout called");
-    }, 1000);
-
-    return () => {
-      clearTimeout(timerid);
-    }
-  }, []);
-
   return (
     <div className="editor-container">
       <div className="editor-image-uploader">
